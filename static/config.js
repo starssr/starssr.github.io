@@ -31,7 +31,7 @@ window.INIS = {
         img_src: 'assets/images/help-icon.svg',
     },
 
-    token: '19221686b6db02eb4953d688e5cb7231',
+    token: 'c8155c1d297045eb162182582493b1da',
 
     // 路由模式 - true = 带 # 号路由
     route_hash: true,
