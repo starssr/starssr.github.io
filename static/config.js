@@ -1,7 +1,7 @@
 window.INIS = {
 
     // API地址
-    api: "https://admin.yyxy.top/api/",
+    api: "https://admin.starssr.com/api/",
 
     // 复制内容是否携带版权 - 开启全站生效 - 关闭仅仅复制代码框生效
     copyright: false,
@@ -24,7 +24,7 @@ window.INIS = {
 
     // 帮助信息
     help: {
-        is_show: true,
+        is_show: false,
         title: '您好！请问有什么可以帮您！',
         btn_title: '帮助',
         btn_url: '//docs.inis.cc',
