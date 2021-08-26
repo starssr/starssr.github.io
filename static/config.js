@@ -1,7 +1,7 @@
 window.INIS = {
 
     // API地址
-    api: "https://admin.starssr.com/api/",
+    api: "https://api.starssr.com/api/",
 
     // 复制内容是否携带版权 - 开启全站生效 - 关闭仅仅复制代码框生效
     copyright: false,
