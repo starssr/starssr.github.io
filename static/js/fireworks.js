@@ -152,8 +152,4 @@ class CursorSpecialEffects {
 
 const cursorSpecialEffects = new CursorSpecialEffects()
 cursorSpecialEffects.init()
-
-console.group("System");
-console.log("作者QQ：1809185784");
-console.log("博客：https://www.xfabe.com");
 console.groupEnd();
