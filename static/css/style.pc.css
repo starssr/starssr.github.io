@@ -3,7 +3,8 @@
 body {
   /* 这里替换PC端背景 */
    background: url(https://imgapi.cn/api.php?zd=zsy&fl=dongman&gs=images) 
-  /*background: url(https://api.gmit.vip/Api/DmImgS?format=image) no-repeat center*/
+  /*background: url(https://api.gmit.vip/Api/DmImgS?format=image) */
+  no-repeat center
     center;
   background-size: cover;
   height: 100vh;
