@@ -8,77 +8,67 @@
     <h1>语音识别</h1>
     <input type="file" id="audioFile" accept="audio/*">
     <br>
-    <label for="engineType">引擎类型：</label>
-    <select id="engineType">
-        <option value="sms16k">普通话(16k采样率)</option>
-        <option value="sms8k">普通话(8k采样率)</option>
-    </select>
-    <br>
-    <label for="aue">音频编码：</label>
-    <select id="aue">
-        <option value="raw">未压缩的音频</option>
-        <option value="speex-wb">speex宽带编码</option>
-        <option value="speex-nb">speex窄带编码</option>
-        <option value="opus">opus编码</option>
-    </select>
-    <br>
-    <label for="resultLevel">结果级别：</label>
-    <select id="resultLevel">
-        <option value="plain">简单结果</option>
-        <option value="complete">完整结果</option>
-    </select>
-    <br>
     <button onclick="transcribe()">开始识别</button>
     <br>
     <div id="result"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
         function transcribe() {
             var audioFile = document.getElementById('audioFile').files[0];
-            var engineType = document.getElementById('engineType').value;
-            var aue = document.getElementById('aue').value;
-            var resultLevel = document.getElementById('resultLevel').value;
+            if (audioFile) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var audioData = e.target.result;
+                    var engineType = 'sms16k'; // 引擎类型
+                    var aue = 'raw'; // 音频编码
+                    var resultLevel = 'plain'; // 结果级别
 
-            var formData = new FormData();
-            formData.append('audio', audioFile);
-            formData.append('engine_type', engineType);
-            formData.append('aue', aue);
-            formData.append('result_level', resultLevel);
+                    // 进行语音识别的逻辑
+                    // 使用 audioData 进行识别，并将结果显示在页面上
+                    // 你需要将API密钥和其他参数填写在这里
 
-            // 生成当前时间戳
-            var curTime = Math.floor(Date.now() / 1000).toString();
+                    // 示例代码：
+                    var appId = '3585358e';
+                    var secretKey = '391e3b79b207d47ce6073a0748e0c1a3';
 
-            // 生成校验和
-            var appId = '3585358e';
-            var secretKey = 'fffb9a45d4fe3e5057ac21a64bacacc1';
-            var rawChecksum = appId + curTime + secretKey;
-            var checksum = md5(rawChecksum);
+                    // 进行语音识别的逻辑
+                    // 使用 audioData 进行识别，并将结果显示在页面上
+                    // 你需要将API密钥和其他参数填写在这里
 
-            $.ajax({
-                url: 'http://api.xfyun.cn/v1/service/v1/iat',
-                type: 'POST',
-                headers: {
-                    'X-Appid': appId,
-                    'X-CurTime': curTime,
-                    'X-Param': 'YOUR_PARAM',
-                    'X-CheckSum': checksum,
-                },
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    var result = JSON.parse(response);
-                    document.getElementById('result').innerText = result.data;
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
+                    // 示例代码：
+                    var url = 'https://raasr.xfyun.cn/v2/api/upload';
+                    var data = {
+                        audio: audioData,
+                        engineType: engineType,
+                        aue: aue,
+                        resultLevel: resultLevel
+                    };
+                    var headers = {
+                        'Content-Type': 'application/json',
+                        'X-AppId': appId,
+                        'X-SecretKey': secretKey
+                    };
 
-        function md5(str) {
-            var md5Hash = CryptoJS.MD5(str);
-            return md5Hash.toString();
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        headers: headers,
+                        data: JSON.stringify(data),
+                        success: function(response) {
+                            // 处理识别结果
+                            var resultDiv = document.getElementById('result');
+                            resultDiv.innerHTML = response.result;
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                };
+                reader.readAsDataURL(audioFile);
+            } else {
+                alert('请选择一个音频文件');
+            }
         }
     </script>
 </body>
