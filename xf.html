@@ -21,7 +21,12 @@
 </head>
 <body>
     <script>
-        function RequestApi(appid, secret_key, upload_file_path) {
+        var appid = "3585358e";
+        var secret_key = "fffb9a45d4fe3e5057ac21a64bacacc1";
+        var upload_file_path = "audio/lfasr_涉政.wav";
+        var taskId = "";
+
+        function RequestApi() {
             var lfasr_host = 'https://raasr.xfyun.cn/v2/api';
             var api_upload = '/upload';
             var api_get_result = '/getResult';
@@ -67,13 +72,14 @@
                     if (xhr.status === 200) {
                         var result = JSON.parse(xhr.responseText);
                         console.log("upload resp:", result);
-                        getResult(result.data);
+                        taskId = result.data.taskId;
+                        getResult();
                     }
                 };
                 xhr.send(formData);
             }
 
-            function getResult(taskId) {
+            function getResult() {
                 var param_dict = {};
                 param_dict['appId'] = appid;
                 param_dict['signa'] = signa;
@@ -136,12 +142,8 @@
 
     <textarea id="resultText" rows="10" cols="50"></textarea>
 
+    <button onclick="RequestApi()">开始转换</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-    <script>
-        var appid = "3585358e";
-        var secret_key = "fffb9a45d4fe3e5057ac21a64bacacc1";
-        var upload_file_path = "audio/lfasr_涉政.wav";
-        RequestApi(appid, secret_key, upload_file_path);
-    </script>
 </body>
 </html>
