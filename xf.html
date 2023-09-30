@@ -45,10 +45,12 @@
                         resultLevel: resultLevel
                     };
                     var headers = {
-                        '=Content-Type: application/json; charset=UTF-8,Chunked: false`
-                        'X-AppId': appId,
-                        'X-SecretKey': secretKey
-                    };
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Chunked': 'false',
+    'X-AppId': appId,
+    'X-SecretKey': secretKey
+};
+
 
                     $.ajax({
                         url: url,
