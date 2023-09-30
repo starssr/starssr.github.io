@@ -2,6 +2,22 @@
 <html>
 <head>
     <title>LFASR API 请求</title>
+    <style>
+        #progressBar {
+            width: 100%;
+            height: 30px;
+            background-color: #f2f2f2;
+        }
+
+        #progressBar div {
+            height: 100%;
+            line-height: 30px;
+            width: 0;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -12,6 +28,10 @@
 
             var ts = Math.floor(Date.now() / 1000).toString();
             var signa = getSigna();
+
+            var progressBar = document.getElementById('progressBar');
+            var progressDiv = document.getElementById('progressDiv');
+            var resultText = document.getElementById('resultText');
 
             function getSigna() {
                 var appid = appid;
@@ -47,25 +67,24 @@
                     if (xhr.status === 200) {
                         var result = JSON.parse(xhr.responseText);
                         console.log("upload resp:", result);
-                        getResult(result.content.orderId);
+                        getResult(result.data);
                     }
                 };
                 xhr.send(formData);
             }
 
-            function getResult(orderId) {
+            function getResult(taskId) {
                 var param_dict = {};
                 param_dict['appId'] = appid;
                 param_dict['signa'] = signa;
                 param_dict['ts'] = ts;
-                param_dict['orderId'] = orderId;
-                param_dict['resultType'] = "transfer,predict";
+                param_dict['taskId'] = taskId;
+                param_dict['resultType'] = "plain";
                 console.log("");
                 console.log("查询部分：");
                 console.log("get result参数：", param_dict);
 
                 var status = 3;
-                // 建议使用回调的方式查询结果，查询接口有请求频率限制
                 var interval = setInterval(function() {
                     if (status === 3) {
                         var xhr = new XMLHttpRequest();
@@ -75,14 +94,20 @@
                             if (xhr.status === 200) {
                                 var result = JSON.parse(xhr.responseText);
                                 console.log(result);
-                                status = result.content.orderInfo.status;
+                                status = result.data.status;
                                 console.log("status=", status);
-                                if (status === 4) {
+                                if (status === 9) {
                                     clearInterval(interval);
+                                    console.log("转换结果：", result.data.result);
+                                    resultText.value = result.data.result;
                                 }
                             }
                         };
                         xhr.send();
+                    } else if (status === 4 || status === 5) {
+                        clearInterval(interval);
+                        console.log("转换失败");
+                        resultText.value = "转换失败";
                     }
                 }, 5000);
             }
@@ -104,6 +129,12 @@
 
     <input type="file" id="fileInput" onchange="handleFileSelect()">
     <audio id="audio" controls></audio>
+
+    <div id="progressBar">
+        <div id="progressDiv"></div>
+    </div>
+
+    <textarea id="resultText" rows="10" cols="50"></textarea>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script>
