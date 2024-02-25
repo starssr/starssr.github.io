@@ -292,12 +292,7 @@
     </div>
     <div class="xf-swiper-pagination"></div>
     <footer class="xf_footer xf_glass">
-
        <p>Copyright &copy; <a><span id="currentYear"></span> 云云星羽 </a> 版权所有 已运行<span class="xf-days"></span></p>
-
-        <!-- 动态获取年份的js，在上面<span id="currentYear"></span>-->
-        <script> document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
-
         <!-- 如果没有备案号就把下面两个p标签注释 -->
         <p><a href="https://icp.gov.moe/?keyword=20100102" rel="noopener noreferrer" target="_blank"><img
                     src="https://icp.gov.moe/images/ico64.png" style="vertical-align:middle;height: 1.0em"></img>
@@ -316,8 +311,9 @@
                 <font color="#27A0FF">2</font>
                 <font color="#15A0FF">号</font>🎡
             </a></p>
-
     </footer>
+    <!-- 动态获取年份的js，在上面<span id="currentYear"></span>-->
+    <script> document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
     <script src="https://cdn.staticfile.org/Swiper/8.3.0/swiper-bundle.min.js"></script>
     <!-- <script src="./static/swiper/swiper-bundle.min.js"></script> -->
     <script src="./static/js/flexible.js"></script>
