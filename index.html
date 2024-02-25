@@ -292,8 +292,11 @@
     </div>
     <div class="xf-swiper-pagination"></div>
     <footer class="xf_footer xf_glass">
-       <p>Copyright &copy; 2023 <a>云云星羽</a> 版权所有 已运行<span
-                class="xf-days"></span></p>
+
+       <p>Copyright &copy; <a><span id="currentYear"></span> 云云星羽 </a> 版权所有 已运行<span class="xf-days"></span></p>
+
+        <!-- 动态获取年份的js，在上面<span id="currentYear"></span>-->
+        <script> document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
 
         <!-- 如果没有备案号就把下面两个p标签注释 -->
         <p><a href="https://icp.gov.moe/?keyword=20100102" rel="noopener noreferrer" target="_blank"><img
