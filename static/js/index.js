@@ -1,14 +1,16 @@
 $(window).on('load', function handlePreloader() {
     if ($('.xf_load').length) {
-        $('.xf_load').delay(2000).fadeOut(1800)
+        $('.xf_load').delay(500).fadeOut(300)
     }
 })
+// 滑动组件
 var swiper = new Swiper(".xf_ico_banner", {
     navigation: {
         nextEl: ".swiper-button-next-ico",
         prevEl: ".swiper-button-prev-ico",
     },
 })
+
 var modal = document.getElementById('myModal')
 var img = document.getElementById('xf_wxImg')
 var modalImg = document.getElementById("img01")
@@ -64,7 +66,7 @@ function xfppp(s) {
 }
 function getClick(event) {
     if (event.button == 2) {
-        swal('= =')
+        swal('不可以哦~')
         document.oncontextmenu = new Function('event.returnValue=false;')
     }
 }
@@ -95,8 +97,7 @@ jinriyunshi.addEventListener('click', function () {
     xf_site.style.display = 'none'
 })
 
-
-// wy网易云音乐
+// 网易云音乐
 var url = "https://api.vvhan.com/api/wyMusic/飙升榜?type=json";
 var musicInfo = []
 var nowmusic = ''
@@ -135,59 +136,23 @@ function init() {
     })
 }
 
-// 抖音
-// var url = "https://api.vvhan.com/api/rand.music?type=json&sort=抖音榜";
-// var musicInfo = []
-// var nowmusic = ''
-// var audio = $("<audio />")
-// var musicimg = $("<img>")
-// var song = $("<div></div>")
-// var auther = $("<div></div>")
-// var isPaused = false
-// var isMuted = false
-// var len = 0
-// var nowloca = 0
-// var volume = 0
-// function init() {
-//     $.ajax({
-//         url: url,
-//         type: "get",
-//         dataType: 'json',
-//         success: function (res) {
-//             audio.attr("autoplay", "autoplay")
-//             audio.attr("src", res.info.mp3url)
-//             $(".musicbox").append(audio)
-//             musicimg.attr("src", res.info.picUrl)
-//             musicimg.addClass("musicimg")
-//             $(".music-img").append(musicimg)
-//             auther.text(res.info.auther)
-//             auther.addClass("auther")
-//             song.text(res.info.name)
-//             song.addClass("name")
-//             $(".music-info").append(song)
-//             $(".music-info").append(auther)
-//             len = 0
-//             nowloca = 0
-//             musicInfo.push(res.info)
-//             nowmusic = res.info
-//         }
-//     })
-// }
-
 $('#icon-rotate').click(() => {
     $('.xf_right_box ').css('transform', 'rotateY(180deg)')
     $('.xf_music_box').css('display', 'none')
     $('.xf_friends').css('display', 'block')
 })
+
 $('#xf-friend-rotate').click(() => {
     $('.xf_right_box ').css('transform', 'rotateY(0deg)')
     $('.xf_music_box').css('display', 'block')
     $('.xf_friends').css('display', 'none')
 })
+
 $(function () {
     init()
     setTimer()
 })
+
 function ProgressBar() {
     var duration = audio.prop("duration")
     var currentTime = audio.prop("currentTime")
@@ -223,7 +188,7 @@ function ProgressBar() {
     let rate = currentTime / duration
     width = parseFloat(width) * parseFloat(rate)
     $(".running1").css("width", parseInt(width))
-    if (duration == currentTime) {
+    if (audio[0].ended) {
         $.ajax({
             url: url,
             type: "get",
@@ -233,7 +198,7 @@ function ProgressBar() {
                 musicInfo.push(nowmusic)
                 len = musicInfo.length
                 nowloca = len
-                audio.prop("src", nowmusic.mp3url)
+                audio.prop("src", nowmusic.url)
                 musicimg.prop("src", nowmusic.picUrl)
                 auther.text(nowmusic.auther)
                 song.text(nowmusic.name)
@@ -241,13 +206,16 @@ function ProgressBar() {
         })
     }
 }
+
 function replayMusic() {
-    audio.prop("src", nowmusic.mp3url)
+    audio.prop("src", nowmusic.url)
     musicimg.prop("src", nowmusic.picUrl)
     auther.text(nowmusic.auther)
     song.text(nowmusic.name)
 }
+
 var bool
+
 function pauseMusic() {
     if (isPaused) {
         audio[0].play()
@@ -262,10 +230,12 @@ function pauseMusic() {
     }
     isPaused = !isPaused
 }
+
 if (bool === false) {
     console.log(111);
     $('#music-img').css('animationPlayState', 'paused')
 }
+
 function muteMusic() {
     var player = document.getElementsByTagName("audio")
     if (isMuted) {
@@ -277,18 +247,20 @@ function muteMusic() {
     }
     isMuted = !isMuted
 }
+
 function preMusic() {
     if (nowloca == 1) {
         swal("这是第一首歌曲了！")
     } else {
         nowloca = nowloca - 1
         nowmusic = musicInfo[nowloca - 1]
-        audio.prop("src", nowmusic.mp3url)
+        audio.prop("src", nowmusic.url)
         musicimg.prop("src", nowmusic.picUrl)
         auther.text(nowmusic.auther)
         song.text(nowmusic.name)
     }
 }
+
 function nextMusic() {
     if (nowloca == len) {
         $.ajax({
@@ -300,7 +272,7 @@ function nextMusic() {
                 musicInfo.push(nowmusic)
                 len = musicInfo.length
                 nowloca = len
-                audio.prop("src", nowmusic.mp3url)
+                audio.prop("src", nowmusic.url)
                 musicimg.prop("src", nowmusic.picUrl)
                 auther.text(nowmusic.auther)
                 song.text(nowmusic.name)
@@ -308,13 +280,14 @@ function nextMusic() {
         })
     } else {
         nowmusic = musicInfo[nowloca]
-        audio.prop("src", nowmusic.mp3url)
+        audio.prop("src", nowmusic.url)
         musicimg.prop("src", nowmusic.picUrl)
         auther.text(nowmusic.auther)
         song.text(nowmusic.name)
         nowloca = nowloca + 1
     }
 }
+
 function changeVulme(e) {
     $(".vulmeBar").click(function (e) {
         let x = e.offsetX
@@ -363,6 +336,7 @@ WIDGET = {
         "key": "b40becb7ef154292abb0ab080baba7d0"
     }
 }
+// 滑动组件
 let xf_now_width1 = document.body.clientWidth
 let xf_now_width2 = window.screen.width
 if (xf_now_width1 < 992 || xf_now_width2 < 992) {
