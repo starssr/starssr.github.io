@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,34 +12,20 @@
     <meta name="author" content="云云星羽">
     <link rel="shortcut icon" href="https://521001121.xyz/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/8.3.0/swiper-bundle.min.css">
-    <!-- <link rel="stylesheet" href="./static/swiper/swiper-bundle.min.css"> -->
     <link rel="stylesheet" href="./static/css/normalize.css">
     <!-- 点开下面两个css，都是第四行代码替换背景 -->
     <link rel="stylesheet" href="./static/css/style.pc.css" media="screen and (min-width: 992px)"> <!-- PC端 -->
     <link rel="stylesheet" href="./static/css/style.phone.css" media="screen and (max-width: 992px)"> <!-- 移动端 -->
-    <!-- 本地路径（如果免费的静态托管链接打不开就开本地的吧） -->
-    <!-- <script src="./static/sweetalert/docs/assets/sweetalert/sweetalert.min.js"></script> -->
-    <!-- <script src="./static/js/jquery-3.5.1.min.js"></script> -->
     <!-- 静态资源托管 -->
     <script src="https://npm.elemecdn.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- 百度统计 -->
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?17d5299205ba49a0157d211ed4d73986";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
 </head>
 
 <body onmousedown="getClick(event)">
+    <!-- 延迟加载 -->
     <!-- <div class="xf_load">
-        <span>loading...</span>
+    <span>进入中。。。</span>
     </div> -->
     <section class="big_box">
         <header class="xf_hd_box">
@@ -75,9 +62,10 @@
                             <h5 class="xf_time_3">星期日</h5>
                         </div>
                     </div>
-                    <div class="xf_weather xf_glass">
+                    <!-- 天气框显示 -->
+                    <!-- <div class="xf_weather xf_glass">
                         <div id="he-plugin-standard"></div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="xf_ico_banner">
                     <div class="swiper-wrapper">
@@ -87,7 +75,8 @@
 
                                 <!--b站-->
                                 <li class="xf_glass">
-                                    <a href="https://b23.tv/cLAzBq" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://space.bilibili.com/32014752" target="_blank"
+                                        rel="noopener noreferrer">
                                         <img src="./static/upload/bilibili.png">
                                     </a>
                                 </li>
@@ -136,17 +125,6 @@
                                         <img src="./static/upload/mail.png">
                                     </a>
                                 </li>
-
-                                <!--<li class="xf_glass">-->
-                                <!--    <a href="JavaScript:;" target="_blank" rel="noopener noreferrer">-->
-                                <!--        <img src="./static/upload/qq.png">-->
-                                <!--    </a>-->
-                                <!--</li>-->
-                                <!--<li class="xf_glass">-->
-                                <!--    <a href="JavaScript:;" target="_blank" rel="noopener noreferrer">-->
-                                <!--        <img src="./static/upload/wx.png">-->
-                                <!--    </a>-->
-                                <!--</li>-->
                             </ul>
                         </div>
 
@@ -165,6 +143,7 @@
                             <h3>云云星羽</h3>
                             <p>陌让流年盼繁华,<br>颜容依旧似繁花。</p>
                         </div>
+                        <!-- 分享按钮 -->
                         <div class="iconfont icon-zhuanfa xf_zhuanfa"></div>
                     </div>
                     <div class="xf_but">
@@ -185,8 +164,10 @@
                         </h4>
                         <ul class="web_site">
                             <li class="xf_glass">
-                                <a href="https://hao.starssr.com/" target="_blank" rel="noopener noreferrer">
-                                    <img class="xf_img_light" src="https://starssr.gitee.io/favicon.ico"
+                                <!-- 这里替换链接 -->
+                                <a href="https://hao.starssr.com" target="_blank" rel="noopener noreferrer">
+                                    <!-- 这里替换图标 -->
+                                    <img class="xf_img_light" src="https://up.starssr.com/img/daohang.png"
                                         alt="起始页"><span>导航</span>
                                 </a>
                             </li>
@@ -233,7 +214,6 @@
             </div>
             <div class="xf_right_box xf_glass slidebox">
                 <div class="xf_music_box">
-                    <!--<i class="iconfont icon-youjiantou" id="icon-rotate"></i>-->
                     <div class="music_picture xf_glass">
                         <span id="music-img" class="music-img" alt="picture"></span>
                     </div>
@@ -242,7 +222,6 @@
                         <div class="runningbox">
                             <div class="start">00:00</div>
                             <div class="running" onclick="changeProgress()">
-                                <!--<div class="running1"><i class="circular"></i></span></div>-->
                             </div>
                             <div class="end">00:00</div>
                         </div>
@@ -253,32 +232,6 @@
                         </ul>
                     </div>
                 </div>
-
-
-
-
-                <!--我的好友呀-->
-                <!--<div class="xf_friends" style="display: none;">-->
-                <!--    <h4 id="xf-friend-rotate"><img src="./static/images/cooperation.png">我的好友</h4>-->
-                <!--    <ul class="xf_friend_YYDS">-->
-                <!--        <li>-->
-                <!-- 跳转链接 把123456替换你的QQ就行 -->
-                <!--            <a href="http://wpa.qq.com/msgrd?v=3&uin=521001121&site=qq&menu=yes" target="_blank" rel="noopener noreferrer">-->
-                <!-- 获取你的QQ头像 -->
-                <!--                <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=521001121&amp;spec=100" alt="云云星羽">-->
-                <!--                <h5>云云星羽</h5>-->
-                <!--                <p>陌让流年盼繁华，颜容依旧似繁花。</p>-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--<li>-->
-                <!--    <a href="JavaScript:;" target="_blank" rel="noopener noreferrer">-->
-                <!--        <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=1809185784&amp;spec=100" alt="小枫">-->
-                <!--        <h5>小枫</h5>-->
-                <!--        <p>我热爱你所热爱的一切！</p>-->
-                <!--    </a>-->
-                <!--</li>-->
-                <!--    </ul>-->
-                <!--</div>-->
             </div>
         </div>
     </section>
@@ -294,7 +247,7 @@
 
         <!-- 动态获取年份的js，在上面<span id="currentYear"></span>-->
         <script> document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
-        <!-- 如果没有备案号就把下面两个p标签注释 -->
+        <!-- 备案 -->
         <p><a href="https://beian.miit.gov.cn/" target="_blank"><img src="https://up.starssr.com/img/icp.svg"
                     style="vertical-align:middle;height: 1.0em"></img>陇ICP备2021002121号-4</a>&nbsp;&nbsp;
             <a href="https://icp.gov.moe/?keyword=20100102" rel="noopener noreferrer" target="_blank"><img
@@ -319,11 +272,9 @@
     </footer>
 
     <script src="https://cdn.staticfile.org/Swiper/8.3.0/swiper-bundle.min.js"></script>
-    <!-- <script src="./static/swiper/swiper-bundle.min.js"></script> -->
     <script src="./static/js/flexible.js"></script>
     <script src="./static/js/fireworks.js"></script>
     <script src="./static/js/index.js"></script>
-    <script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
     <script>
         // 这里修改网站运行时间
         var xf_footer_time1 = new Date('2023-02-24').getTime()
@@ -331,9 +282,10 @@
         var days = xf_footer_time2 - xf_footer_time1
         var number_of_days = parseInt(days / (1000 * 60 * 60 * 24))
         $(".xf-days")[0].innerHTML = number_of_days + '天'
-        // swal('欢迎来到小窝，此站挂在Gitee，如果博客意外挂了就在这里找到我')
+
+        // 下面是欢迎语（公告）
+        // swal('服务器出问题了，重装中，请等待恢复')
     </script>
-    <!--<script id="xplayer" src="https://player.xfyun.club/Static/player/player.js" key="606e5a8824639" m = "0"></script>-->
 </body>
 
 </html>
