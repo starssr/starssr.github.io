@@ -95,7 +95,9 @@ jinriyunshi.addEventListener('click', function () {
     xf_site.style.display = 'none'
 })
 
-var url = "https://api.vvhan.com/api/rand.music?type=json&sort=抖音榜";
+
+// wy网易云音乐
+var url = "https://api.vvhan.com/api/wyMusic/飙升榜?type=json";
 var musicInfo = []
 var nowmusic = ''
 var audio = $("<audio />")
@@ -114,7 +116,7 @@ function init() {
         dataType: 'json',
         success: function (res) {
             audio.attr("autoplay", "autoplay")
-            audio.attr("src", res.info.mp3url)
+            audio.attr("src", res.info.url)
             $(".musicbox").append(audio)
             musicimg.attr("src", res.info.picUrl)
             musicimg.addClass("musicimg")
@@ -132,6 +134,46 @@ function init() {
         }
     })
 }
+
+// 抖音
+// var url = "https://api.vvhan.com/api/rand.music?type=json&sort=抖音榜";
+// var musicInfo = []
+// var nowmusic = ''
+// var audio = $("<audio />")
+// var musicimg = $("<img>")
+// var song = $("<div></div>")
+// var auther = $("<div></div>")
+// var isPaused = false
+// var isMuted = false
+// var len = 0
+// var nowloca = 0
+// var volume = 0
+// function init() {
+//     $.ajax({
+//         url: url,
+//         type: "get",
+//         dataType: 'json',
+//         success: function (res) {
+//             audio.attr("autoplay", "autoplay")
+//             audio.attr("src", res.info.mp3url)
+//             $(".musicbox").append(audio)
+//             musicimg.attr("src", res.info.picUrl)
+//             musicimg.addClass("musicimg")
+//             $(".music-img").append(musicimg)
+//             auther.text(res.info.auther)
+//             auther.addClass("auther")
+//             song.text(res.info.name)
+//             song.addClass("name")
+//             $(".music-info").append(song)
+//             $(".music-info").append(auther)
+//             len = 0
+//             nowloca = 0
+//             musicInfo.push(res.info)
+//             nowmusic = res.info
+//         }
+//     })
+// }
+
 $('#icon-rotate').click(() => {
     $('.xf_right_box ').css('transform', 'rotateY(180deg)')
     $('.xf_music_box').css('display', 'none')
